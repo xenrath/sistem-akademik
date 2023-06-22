@@ -20,7 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'nuptk',
+        'telp',
+        'alamat',
         'password',
+        'level'
     ];
 
     /**
@@ -42,4 +46,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isAdmin()
+    {
+        if ($this->level == 'admin') {
+            return true;
+        }
+        return false;
+    }
+
+    public function isGuru()
+    {
+        if ($this->level == 'guru') {
+            return true;
+        }
+        return false;
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
+
 }
