@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->middleware('isLogin');
-Route::get('login', [UserController::class, 'index'])->middleware('isLogin');
-Route::post('login-action', [UserController::class, 'login_action'])->name('login.action')->middleware('isLogin');
-Route::get('logout', [UserController::class, 'logout'])->name('logout');
-Route::get('checkuser', [HomeController::class, 'checkUser']);
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('login', [AuthController::class, 'index']);
+Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout']);
+
+Route::get('check-user', [HomeController::class, 'check_user']);
 
 
 Route::middleware('admin')->prefix('admin')->group(function () {

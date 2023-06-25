@@ -8,23 +8,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('layouts.login');
+        return view('index');
     }
 
-    public function checkUser()
+    public function check_user()
     {
-        if(auth()->user()->isAdmin())
-        {
+        if (auth()->user()->isAdmin()) {
             return redirect('admin');
-        }
-
-        elseif(auth()->user()->isGuru())
-        {
+        } elseif (auth()->user()->isGuru()) {
             return redirect('guru');
-        }
-        
-        elseif (auth()->user()->isKepsek())
-        {
+        } elseif (auth()->user()->isKepsek()) {
             return redirect('kepsek');
         }
     }

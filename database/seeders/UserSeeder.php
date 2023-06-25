@@ -15,40 +15,40 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'username' => 'admin',
+                'password' => bcrypt('admin'),
+                'nama' => 'admin',
                 'nuptk' => '-',
                 'telp' => '-',
                 'alamat' => '-',
-                'password' => bcrypt('admin'),
                 'level' => 'admin'
             ],
             [
-                'name' => 'Tuti Handayani',
-                'email' => 'guru@gmail.com',
+                'username' => 'guru',
+                'password' => bcrypt('guru'),
+                'nama' => 'Tuti Handayani',
                 'nuptk' => '1209748',
                 'telp' => '81902624982',
                 'alamat' => 'Tegal',
-                'password' => bcrypt('guru'),
                 'level' => 'guru'
             ],
             [
-                'name' => 'Nur halizah',
-                'email' => 'guru1@gmail.com',
+                'username' => 'guru1',
+                'password' => bcrypt('guru1'),
+                'nama' => 'Nur halizah',
                 'nuptk' => '1209749',
                 'telp' => '81902624191',
                 'alamat' => 'Tegal',
-                'password' => bcrypt('guru1'),
                 'level' => 'guru'
             ],
 
             [
-                'name' => 'Rindiyani',
-                'email' => 'guru2@gmail.com',
+                'username' => 'guru2',
+                'password' => bcrypt('guru2'),
+                'nama' => 'Rindiyani',
                 'nuptk' => '1209749',
                 'telp' => '81902624971',
                 'alamat' => 'Tegal',
-                'password' => bcrypt('guru2'),
                 'level' => 'guru'
             ]
         ];
