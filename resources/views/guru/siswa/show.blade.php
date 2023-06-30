@@ -73,7 +73,7 @@
                                 <tr>
                                     <th>Wali kelas</th>
                                     <td>:</td>
-                                    <td>{{ $siswa->guru->nama }}</td>
+                                    <td>{{ $siswa->guru->name }}</td>
                                 </tr>
                             </table>
                         </div>

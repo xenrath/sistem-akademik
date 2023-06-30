@@ -78,9 +78,9 @@
                             <label class="form-label" for="gender">Pilih Gender</label>
                             <select class="form-control" id="gender" name="gender">
                                 <option value="">- Pilih -</option>
-                                <option value="gender" {{ old('gender') == 'L' ? 'selected' : null }}>
+                                <option value="L" {{ old('gender') == 'L' ? 'selected' : null }}>
                                     Laki-laki</option>
-                                <option value="pakan" {{ old('gender') == 'P' ? 'selected' : null }}>
+                                <option value="P" {{ old('gender') == 'P' ? 'selected' : null }}>
                                     Perempuan</option>
                             </select>
                         </div>
@@ -103,7 +103,7 @@
                                 @foreach ($gurus as $k)
                                     <option value="{{ $k->id }}"
                                         {{ old('guru_id') == $k->id ? 'selected' : null }}>
-                                        {{ $k->name }}</option>
+                                        {{ $k->nama }}</option>
                                 @endforeach
                             </select>
                         </div>

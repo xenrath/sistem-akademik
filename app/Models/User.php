@@ -18,8 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'nama',
+        'username',
         'nuptk',
         'telp',
         'alamat',
@@ -68,4 +68,18 @@ class User extends Authenticatable
         return $this->hasMany(Siswa::class);
     }
 
+    public function hasil()
+    {
+        return $this->hasMany(Hasil_belajar::class);
+    }
+
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class);
+    }
+
+    public function soal()
+    {
+        return $this->hasMany(Soal::class);
+    }
 }

@@ -67,7 +67,7 @@
                                         <td>Perempuan</td>
                                     @endif
                                     <td>{{ $siswa->kelas->kelas }}</td>
-                                    <td>{{ $siswa->guru->name }}</td>
+                                    <td>{{ $siswa->guru->nama }}</td>
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ url('admin/siswa/' . $siswa->id) }}" class="btn btn-info">

@@ -12,12 +12,12 @@ class KelasController extends Controller
     public function index()
     {
         $kelass = Kelas::get();
-        return view('admin/kelas.index', compact('kelass'));
+        return view('admin.kelas.index', compact('kelass'));
     }
 
     public function create()
     {
-        return view('admin/kelas.create');
+        return view('admin.kelas.create');
     }
 
     public function store(Request $request)
@@ -41,13 +41,13 @@ class KelasController extends Controller
 
         Kelas::create($request->all());
 
-        return redirect('admin/kelas')->with('success', 'Berhasil menambahkan kelas');
+        return redirect('admin.kelas.index')->with('success', 'Berhasil menambahkan kelas');
     }
 
     public function edit($id)
     {
         $kelas = Kelas::where('id', $id)->first();
-        return view('admin/kelas.update', compact('kelas'));
+        return view('admin.kelas.update', compact('kelas'));
     }
 
     public function update(Request $request, $id)
@@ -76,12 +76,13 @@ class KelasController extends Controller
                 'ruangan' => $request->ruangan,
             ]);
 
-        return redirect('admin/kelas')->with('status', 'Berhasil memperbarui kelas');
+        return redirect('admin.kelas.index')->with('status', 'Berhasil memperbarui kelas');
     }
 
     public function destroy($id)
     {
         $kelas = Kelas::find($id);
+        $kelas->siswa()->delete();
         $kelas->delete();
 
         return redirect('admin/kelas')->with('success', 'Berhasil menghapus kelas');

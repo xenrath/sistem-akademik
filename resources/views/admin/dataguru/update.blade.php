@@ -46,8 +46,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Masukan nama" value="{{ old('name', $guru->name) }}">
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                placeholder="Masukan nama" value="{{ old('nama', $guru->nama) }}">
                         </div>
                         <div class="form-group">
                             <label for="nuptk">NUPTK</label>
@@ -70,9 +70,9 @@
                                 placeholder="Masukan alamat" value="{{ old('alamat', $guru->alamat) }}">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Masukan email" value="{{ old('email', $guru->email) }}" readonly>
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Masukan username" value="{{ old('username', $guru->username) }}">
                         </div>
 
                         <div class="form-group">

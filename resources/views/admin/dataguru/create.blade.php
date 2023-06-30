@@ -44,8 +44,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Masukan nama" value="{{ old('name') }}">
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                placeholder="Masukan nama" value="{{ old('nama') }}">
                         </div>
                         <div class="form-group">
                             <label for="nuptk">NUPTK</label>
@@ -64,13 +64,13 @@
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat"
-                                placeholder="Masukan alamat" value="{{ old('alamat') }}">
+                            <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan alamat"
+                                value="{{ old('alamat') }}"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Masukan email" value="{{ old('email') }}">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Masukan username" value="{{ old('username') }}">
                         </div>
 
                         <div class="form-group">

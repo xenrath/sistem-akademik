@@ -28,14 +28,20 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::resource('guru', \App\Http\Controllers\Admin\GuruController::class);
     Route::resource('kelas', \App\Http\Controllers\Admin\KelasController::class);
     Route::resource('siswa', \App\Http\Controllers\Admin\SiswaController::class);
-
+    Route::resource('mapel', \App\Http\Controllers\Admin\MapelController::class);
     Route::resource('menu-home', \App\Http\Controllers\Admin\MenuHomeController::class);
     Route::resource('menu-about', \App\Http\Controllers\Admin\MenuAboutController::class);
     Route::resource('menu-galeri', \App\Http\Controllers\Admin\MenuGaleriController::class);
     Route::resource('menu-ppdb', \App\Http\Controllers\Admin\MenuPpdbController::class);
     Route::resource('menu-kontak', \App\Http\Controllers\Admin\MenuKontakController::class);
-    
     Route::get('profile-sekolah', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'index']);
     Route::post('profile-sekolah', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'update']);
     Route::post('profile-sekolah/test', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'test']);
+});
+
+Route::middleware('guru')->prefix('guru')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Guru\DashboardController::class, 'index']);
+    Route::resource('siswa', \App\Http\Controllers\Guru\SiswaController::class);
+    Route::resource('kelas', \App\Http\Controllers\Guru\KelasController::class);
+    Route::resource('mapel', \App\Http\Controllers\Guru\MapelController::class);
 });

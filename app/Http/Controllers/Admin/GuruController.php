@@ -25,19 +25,18 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'nama' => 'required',
             'nuptk' => 'required',
             'alamat' => 'required',
-            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users',
             'telp' => 'nullable|unique:users',
             'password' => 'required'
         ], [
-            'name.required' => 'Masukan nama',
+            'nama.required' => 'Masukan nama',
             'nuptk.required' => 'Masukan nuptk',
             'alamat.required' => 'Masukan alamat',
-            'email.required' => 'Email harus diisi!',
-            'email.unique' => 'Email sudah digunakan!',
-            'email.email' => 'Email yang dimasukan salah!',
+            'username.required' => 'Username harus diisi!',
+            'username.unique' => 'Username sudah digunakan!',
             'telp.unique' => 'Nomor telepon sudah digunakan!',
             'password.required' => 'Masukan password',
         ]);
@@ -76,20 +75,18 @@ class GuruController extends Controller
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'name' => 'required',
+                    'nama' => 'required',
                     'nuptk' => 'required',
                     'alamat' => 'required',
-                    'email' => 'required',
+                    'username' => 'required',
                     'telp' => 'nullable',
                 ],
                 [
-                    'name.required' => 'Masukan nama',
+                    'nama.required' => 'Masukan nama',
+                    'username.required' => 'Masukan username',
                     'nuptk.required' => 'Masukan nuptk',
                     'alamat.required' => 'Masukan alamat',
-                    'email.required' => 'Email harus diisi!',
-                    // 'email.unique' => 'Email sudah digunakan!',
-                    'email.email' => 'Email yang dimasukan salah!',
-                    // 'telp.unique' => 'Nomor telepon sudah digunakan!',
+                    'telp.required' => 'Masukan No telpone',
                 ]
             );
         }
@@ -106,20 +103,21 @@ class GuruController extends Controller
 
 
         User::where('id', $id)->update([
-            'name' => $request->name,
+            'nama' => $request->nama,
             'nuptk' => $request->nuptk,
             'alamat' => $request->alamat,
             'telp' => $request->alamat,
-            'email' => $request->email,
+            'username' => $request->username,
             'password' => $password
         ]);
 
-        return redirect('admin/guru')->with('status', 'Berhasil memperbarui guru');
+        return redirect('admin/guru')->with('success', 'Berhasil memperbarui guru');
     }
 
     public function destroy($id)
     {
         $guru = User::find($id);
+        $guru->siswa()->delete();
         $guru->delete();
 
         return redirect('admin/guru')->with('success', 'Berhasil menghapus guru');

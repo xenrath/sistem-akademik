@@ -17,4 +17,14 @@ class Kelas extends Model
     {
         return $this->hasMany(Siswa::class);
     }
+
+    public function hasil()
+    {
+        return $this->hasMany(Hasil_belajar::class);
+    }
+
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class);
+    }
 }

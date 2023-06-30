@@ -106,7 +106,7 @@
                                 @foreach ($guru as $k)
                                     <option value="{{ $k->id }}"
                                         {{ old('guru_id', $siswa->guru_id) == $k->id ? 'selected' : null }}>
-                                        {{ $k->nama }}</option>
+                                        {{ $k->name }}</option>
                                 @endforeach
                             </select>
                         </div>

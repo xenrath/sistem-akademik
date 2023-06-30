@@ -35,17 +35,17 @@
                                 <tr>
                                     <th>Nama Guru</th>
                                     <td>:</td>
-                                    <td>{{ $guru->name }}</td>
+                                    <td>{{ $guru->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Username</th>
+                                    <td>:</td>
+                                    <td>{{ $guru->username }}</td>
                                 </tr>
                                 <tr>
                                     <th>NUPTK</th>
                                     <td>:</td>
                                     <td>{{ $guru->nuptk }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>:</td>
-                                    <td>{{ $guru->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>No. Telepon</th>
@@ -63,7 +63,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             @if ($guru->foto)
                                 <img src="{{ asset('storage/uploads/' . $guru->foto) }}" alt="{{ $guru->nama }}"
                                     class="w-100 rounded">
@@ -71,7 +71,7 @@
                                 <img src="{{ asset('storage/uploads/image-placeholder.jpg') }}" alt="{{ $guru->nama }}"
                                     class="w-100 rounded">
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
