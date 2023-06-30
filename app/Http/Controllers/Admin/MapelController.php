@@ -89,8 +89,11 @@ class MapelController extends Controller
         return redirect('admin/mapel')->with('success', 'Berhasil memperbarui mapel');
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        $
+        $mapel = Mapel::find($id);
+        $mapel->delete();
+
+        return redirect('admin/mapel')->with('success', 'Berhasil menghapus mapel');
     }
 }
