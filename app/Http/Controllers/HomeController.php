@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfileSekolah;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $profilesekolah = ProfileSekolah::first();
+
+        return view('index', compact('profilesekolah'));
     }
 
     public function check_user()

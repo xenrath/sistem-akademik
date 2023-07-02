@@ -82,13 +82,14 @@
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center"
           data-aos="fade-up">
           <div>
-            <h1>Selamat Datang di Sekolah Dasar ABC</h1>
-            <h2>Pendidikan Berkualitas untuk Masa Depan Anak Anda</h2>
+            <h1>{{ $profilesekolah->home_judul }}</h1>
+            <h2>{{ $profilesekolah->home_deskripsi }}</h2>
             <a href="#about" class="btn-get-started scrollto">Lihat Selengkapnya</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-          <img src="{{ asset('storage/uploads/logo.png') }}" class="img-fluid" alt="">
+          <img src="{{ asset('storage/uploads/' . $profilesekolah->home_gambar) }}" class="img-fluid"
+            alt="Home Gambar">
         </div>
       </div>
     </div>
@@ -104,10 +105,7 @@
         <div class="section-title" data-aos="fade-up">
           <h2 class="text-dark">Tentang Kami</h2>
           <p>
-            Sekolah Dasar ABC adalah lembaga pendidikan yang memberikan pendidikan berkualitas dengan pendekatan
-            inovatif. Kami fokus pada pengembangan karakter siswa dan menjaga kerjasama erat dengan orang tua. Keamanan
-            siswa menjadi prioritas utama kami. Bergabunglah dengan kami di Sekolah Dasar ABC untuk pengalaman belajar
-            terbaik.
+            {{ $profilesekolah->about_deskripsi }}
           </p>
         </div>
         <div class="row">
@@ -118,13 +116,11 @@
             <div class="content pt-4 pt-lg-0">
               <h3>Visi</h3>
               <p>
-                Memberikan pendidikan berkualitas untuk mengembangkan potensi siswa secara holistik dan siap menghadapi
-                masa depan.
+                {{ $profilesekolah->about_visi }}
               </p>
               <h3>Misi</h3>
               <p>
-                Mengembangkan potensi siswa melalui pendekatan inovatif, membangun lingkungan belajar inklusif, menjalin
-                kemitraan dengan orang tua, menjaga keamanan siswa, dan mendorong nilai-nilai etika dan integritas.
+                {{ $profilesekolah->about_misi }}
               </p>
             </div>
           </div>
@@ -206,171 +202,20 @@
           </p>
         </div>
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-1.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-links">
-                <p>Lihat</p>
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-1.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
-                  <i class="bx bx-show"></i>
-                </a>
+          @foreach ($profilesekolah->galeri_gambar as $key => $gambar)
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="{{ asset('storage/uploads/' . $gambar) }}" class="img-fluid w-100 h-100" alt="">
+                <div class="portfolio-links">
+                  <p>Lihat</p>
+                  <a href="{{ asset('storage/uploads/' . $gambar) }}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox">
+                    <i class="bx bx-show"></i>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-2.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-2.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-3.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>App</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-3.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-4.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Card 2</h4>
-                <p>Card</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-4.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-5.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Web 2</h4>
-                <p>Web</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-5.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-6.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>App</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-6.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-7.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Card 1</h4>
-                <p>Card</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-7.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-8.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Card 3</h4>
-                <p>Card</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-8.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-9.jpg" class="img-fluid"
-                alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-              </div>
-              <div class="portfolio-links">
-                <a href="{{ asset('scaffold/assets/img/portfolio/portfolio-9.jpg') }}"
-                  data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3">
-                  <i class="bx bx-plus"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details">
-                  <i class="bx bx-link"></i>
-                </a>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </section>
@@ -408,8 +253,11 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <img src="{{ asset('scaffold/assets/img/portfolio/portfolio') }}-9.jpg" class="img-fluid w-100"
-              alt="">
+            <a href="{{ asset('storage/uploads/' . $profilesekolah->ppdb_flayer) }}" data-gallery="portfolioGallery"
+              class="portfolio-lightbox">
+              <img src="{{ asset('storage/uploads/' . $profilesekolah->ppdb_flayer) }}" class="img-fluid w-100"
+                alt="">
+            </a>
           </div>
         </div>
       </div>
@@ -428,29 +276,29 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Lokasi :</h4>
-                <p>Jalan Raya II Adiwerna, Desa Kalimati, Kecamatan Adiwerna, Kabupaten Tegal</p>
+                <p>{{ $profilesekolah->kontak_alamat }}</p>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email :</h4>
-                <p>admin@sdnabc.com</p>
+                <p>{{ $profilesekolah->kontak_email }}</p>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Telp / WA :</h4>
-                <p>+62123456789012</p>
+                <p>+62{{ $profilesekolah->kontak_telp }}</p>
               </div>
             </div>
           </div>
         </div>
         <div data-aos="fade-left">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-            frameborder="0" style="border:0; width: 100%; height: 320px;" allowfullscreen></iframe>
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3960.954206787928!2d109.12112307430388!3d-6.89608099310311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNTMnNDUuOSJTIDEwOcKwMDcnMjUuMyJF!5e0!3m2!1sid!2sid!4v1688228237574!5m2!1sid!2sid"
+            frameborder="0" style="border:0; width: 100%; height: 360px;" allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -470,10 +318,10 @@
                 Ikuti semua sosial media kami untuk mendapatkan update selanjutnya.
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="facebook">
+                <a href="{{ $profilesekolah->link_facebook }}" class="facebook" target="_blank">
                   <i class="bx bxl-facebook"></i>
                 </a>
-                <a href="#" class="instagram">
+                <a href="{{ $profilesekolah->link_instagram }}" class="instagram" target="_blank">
                   <i class="bx bxl-instagram"></i>
                 </a>
               </div>

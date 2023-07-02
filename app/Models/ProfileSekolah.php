@@ -26,4 +26,8 @@ class ProfileSekolah extends Model
         'link_facebook',
         'link_instagram',
     ];
+
+    protected $casts = [
+        'galeri_gambar' => 'array'
+    ];
 }

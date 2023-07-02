@@ -29,11 +29,23 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::resource('kelas', \App\Http\Controllers\Admin\KelasController::class);
     Route::resource('siswa', \App\Http\Controllers\Admin\SiswaController::class);
     Route::resource('mapel', \App\Http\Controllers\Admin\MapelController::class);
-    Route::resource('menu-home', \App\Http\Controllers\Admin\MenuHomeController::class);
-    Route::resource('menu-about', \App\Http\Controllers\Admin\MenuAboutController::class);
-    Route::resource('menu-galeri', \App\Http\Controllers\Admin\MenuGaleriController::class);
-    Route::resource('menu-ppdb', \App\Http\Controllers\Admin\MenuPpdbController::class);
-    Route::resource('menu-kontak', \App\Http\Controllers\Admin\MenuKontakController::class);
+    
+    Route::get('menu-home', [\App\Http\Controllers\Admin\MenuHomeController::class, 'index']);
+    Route::post('menu-home/update', [\App\Http\Controllers\Admin\MenuHomeController::class, 'update']);
+    
+    Route::get('menu-about', [\App\Http\Controllers\Admin\MenuAboutController::class, 'index']);
+    Route::post('menu-about/update', [\App\Http\Controllers\Admin\MenuAboutController::class, 'update']);
+    
+    Route::get('menu-galeri', [\App\Http\Controllers\Admin\MenuGaleriController::class, 'index']);
+    Route::post('menu-galeri/update', [\App\Http\Controllers\Admin\MenuGaleriController::class, 'update']);
+    Route::get('menu-galeri/{key}/hapus', [\App\Http\Controllers\Admin\MenuGaleriController::class, 'hapus']);
+    
+    Route::get('menu-ppdb', [\App\Http\Controllers\Admin\MenuPpdbController::class, 'index']);
+    Route::post('menu-ppdb/update', [\App\Http\Controllers\Admin\MenuPpdbController::class, 'update']);
+    
+    Route::get('menu-kontak', [\App\Http\Controllers\Admin\MenuKontakController::class, 'index']);
+    Route::post('menu-kontak/update', [\App\Http\Controllers\Admin\MenuKontakController::class, 'update']);
+    
     Route::get('profile-sekolah', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'index']);
     Route::post('profile-sekolah', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'update']);
     Route::post('profile-sekolah/test', [\App\Http\Controllers\Admin\ProfileSekolahController::class, 'test']);
