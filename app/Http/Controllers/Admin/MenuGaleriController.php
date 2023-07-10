@@ -21,7 +21,7 @@ class MenuGaleriController extends Controller
         $profilesekolah = ProfileSekolah::first();
 
         if ($profilesekolah->galeri_gambar) {
-            $galeri_gambar = json_decode($profilesekolah->galeri_gambar);
+            $galeri_gambar = $profilesekolah->galeri_gambar;
         } else {
             $galeri_gambar = array();
         }
@@ -44,7 +44,7 @@ class MenuGaleriController extends Controller
     public function hapus($key)
     {
         $profilesekolah = ProfileSekolah::where('id', 1)->first();
-        $gambar = json_decode($profilesekolah->galeri_gambar);
+        $gambar = $profilesekolah->galeri_gambar;
         unset($gambar[$key]);
 
         $galeri_gambar = array();

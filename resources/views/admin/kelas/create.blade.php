@@ -43,14 +43,31 @@
           @csrf
           <div class="card-body">
             <div class="form-group">
-              <label for="kelas">Kelas</label>
-              <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan kelas"
-                value="{{ old('kelas') }}">
+              <label for="nama">Nama Kelas</label>
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama kelas"
+                value="{{ old('nama') }}">
             </div>
             <div class="form-group">
-              <label for="nuptk">Ruangan</label>
-              <input type="text" class="form-control" id="ruangan" name="ruangan" placeholder="Masukan ruangan"
-                value="{{ old('ruangan') }}">
+              <label for="kelas">Kelas</label>
+              <select class="custom-select form-control" name="kelas" id="kelas">
+                <option value="">- Pilih -</option>
+                <option value="1" {{ old('kelas') == '1' ? 'selected' : '' }}>1</option>
+                <option value="2" {{ old('kelas') == '2' ? 'selected' : '' }}>2</option>
+                <option value="3" {{ old('kelas') == '3' ? 'selected' : '' }}>3</option>
+                <option value="4" {{ old('kelas') == '4' ? 'selected' : '' }}>4</option>
+                <option value="5" {{ old('kelas') == '5' ? 'selected' : '' }}>5</option>
+                <option value="6" {{ old('kelas') == '6' ? 'selected' : '' }}>6</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guru_id">Wali Kelas</label>
+              <select class="form-control select2bs4" name="guru_id" id="guru_id">
+                <option value="">- Pilih -</option>
+                @foreach ($gurus as $guru)
+                  <option value="{{ $guru->id }}" {{ old('guru_id') == $guru->id ? 'selected' : '' }}>
+                    {{ $guru->nama }}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <div class="card-footer text-right">

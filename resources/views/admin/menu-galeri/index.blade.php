@@ -54,7 +54,7 @@
             <div class="form-group">
               <label for="galeri_gambar">Gambar
                 @if ($profilesekolah->galeri_gambar)
-                  @if (count(json_decode($profilesekolah->galeri_gambar)) > 0)
+                  @if (count($profilesekolah->galeri_gambar) > 0)
                     <small>(kosongkan saja jika tidak ingin ditambahkan)</small>
                   @endif
                 @endif
@@ -67,7 +67,7 @@
             </div>
             @if ($profilesekolah->galeri_gambar)
               <div class="row">
-                @foreach (json_decode($profilesekolah->galeri_gambar) as $key => $galeri_gambar)
+                @foreach ($profilesekolah->galeri_gambar as $key => $galeri_gambar)
                   <div class="col-4 col-md-3 mb-3">
                     <a href="#" data-toggle="modal" data-target="#modal-gambar-{{ $key }}">
                       <img src="{{ asset('storage/uploads/' . $galeri_gambar) }}" alt="Galeri Gambar {{ $key }}"

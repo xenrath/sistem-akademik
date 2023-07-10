@@ -37,7 +37,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Masuk untuk melanjutkan</p>
 
-        <form action="{{ url('login') }}" method="post">
+        <form action="{{ url('login') }}" method="post" autocomplete="off">
           @csrf
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="username" placeholder="Masukan username">

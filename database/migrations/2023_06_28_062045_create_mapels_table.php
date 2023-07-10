@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->unsignedBigInteger('kelas_id');
-            $table->foreign('kelas_id')->references('id')->on('kelas');
-            $table->unsignedBigInteger('guru_id');
-            $table->foreign('guru_id')->references('id')->on('users');
+            $table->string('kelas');
             $table->timestamps();
         });
     }

@@ -7,9 +7,9 @@
 </li>
 <li class="nav-header">Menu</li>
 <li
-  class="nav-item {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') ? 'menu-open' : '' }}">
+  class="nav-item {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') ? 'menu-open' : '' }}">
   <a href="#"
-    class="nav-link {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') ? 'active' : '' }}">
+    class="nav-link {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') ? 'active' : '' }}">
     <i class="nav-icon fas fa-grip-horizontal"></i>
     <p>
       Kelola Data
@@ -33,6 +33,12 @@
       <a href="{{ url('admin/siswa') }}" class="nav-link {{ request()->is('admin/siswa*') ? 'active' : '' }}">
         <i class="far fa-circle nav-icon"></i>
         <p>Data Siswa</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ url('admin/orangtua') }}" class="nav-link {{ request()->is('admin/orangtua*') ? 'active' : '' }}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Data Orangtua</p>
       </a>
     </li>
     <li class="nav-item">
@@ -88,18 +94,4 @@
       </a>
     </li>
   </ul>
-</li>
-<li class="nav-header">Profile</li>
-<li class="nav-item">
-  <a href="" class="nav-link">
-    <i class="nav-icon fas fa-user-edit"></i>
-    <p>Update Profile</p>
-  </a>
-</li>
-<li class="nav-item">
-  <a href="#" data-toggle="modal" data-target="#modalLogout"
-    class="nav-link {{ request()->is('profile') ? 'active' : '' }}">
-    <i class="nav-icon fas fa-sign-out-alt"></i>
-    <p>Logout</p>
-  </a>
 </li>

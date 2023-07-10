@@ -20,26 +20,18 @@ class MapelController extends Controller
 
     public function create()
     {
-        $gurus = User::where(['level' => 'guru'])->get();
-        $kelass = Kelas::get();
-        return view('admin.mapel.create', compact('gurus', 'kelass'));
+        return view('admin.mapel.create');
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'nama' => 'required',
-                'guru_id' => 'required',
-                'kelas_id' => 'required'
-            ],
-            [
-                'nama.required' => 'Nama tidak boleh kosong !',
-                'guru_id.required' => 'Guru tidak boleh kosong !',
-                'kelas_id.required' => 'Kelas tidak boleh kosong !'
-            ]
-        );
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'kelas' => 'required'
+        ], [
+            'nama.required' => 'Nama Mapel harus diisi!',
+            'kelas.required' => 'Kelas harus dipilih!'
+        ]);
 
         if ($validator->fails()) {
             $error = $validator->errors()->all();
@@ -47,46 +39,38 @@ class MapelController extends Controller
         }
 
         Mapel::create($request->all());
-        return redirect('admin/mapel')->with('success', 'Berhasil menambahkan mapel');
+
+        return redirect('admin/mapel')->with('success', 'Berhasil menambahkan Mapel');
     }
 
     public function edit($id)
     {
-        $mapels = Mapel::where('id', $id)->first();
-        $gurus = User::where(['level' => 'guru'])->get();
-        $kelass = Kelas::all();
-        return view('admin.mapel.update', compact('mapels', 'gurus', 'kelass'));
+        $mapel = Mapel::where('id', $id)->first();
+
+        return view('admin.mapel.update', compact('mapel'));
     }
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'nama' => 'required',
-                'guru_id' => 'required',
-                'kelas_id' => 'required'
-            ],
-            [
-                'nama.required' => 'Nama tidak boleh kosong !',
-                'guru_id.required' => 'Guru tidak boleh kosong !',
-                'kelas_id.required' => 'Kelas tidak boleh kosong !'
-            ]
-        );
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'kelas' => 'required'
+        ], [
+            'nama.required' => 'Nama Mapel harus diisi!',
+            'kelas.required' => 'Kelas harus dipilih!'
+        ]);
 
         if ($validator->fails()) {
             $error = $validator->errors()->all();
             return back()->withInput()->with('error', $error);
         }
 
-        Mapel::where('id',$id)
-            ->update([
-                'nama' => $request->nama,
-                'guru_id' => $request->guru_id,
-                'kelas_id' => $request->kelas_id,
-            ]);
+        Mapel::where('id', $id)->update([
+            'nama' => $request->nama,
+            'kelas' => $request->kelas
+        ]);
 
-        return redirect('admin/mapel')->with('success', 'Berhasil memperbarui mapel');
+        return redirect('admin/mapel')->with('success', 'Berhasil memperbarui Mapel');
     }
 
     public function destroy($id)
@@ -94,6 +78,6 @@ class MapelController extends Controller
         $mapel = Mapel::find($id);
         $mapel->delete();
 
-        return redirect('admin/mapel')->with('success', 'Berhasil menghapus mapel');
+        return redirect('admin/mapel')->with('success', 'Berhasil menghapus Mapel');
     }
 }

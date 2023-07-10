@@ -90,14 +90,24 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
             data-accordion="false">
-
             @if (auth()->user()->isAdmin())
               @include('layouts.menu.admin')
             @endif
             @if (auth()->user()->isGuru())
               @include('layouts.menu.guru')
             @endif
-
+            <li class="nav-header">Profile</li>
+            <li class="nav-item">
+              <a href="{{ url('profile') }}" class="nav-link {{ request()->is('profile') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-edit"></i>
+                <p>Update Profile</p>
+              </a>
+            </li>
+            <br>
+            <li class="nav-header">
+              <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                data-target="#modal-logout">Logout</button>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -106,14 +116,14 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper {{ request()->is('guru/jadwal') ? 'kanban' : '' }}">
 
       @yield('content')
 
     </div>
     <!-- /.content-wrapper -->
 
-    <div class="modal fade" id="modalLogout">
+    <div class="modal fade" id="modal-logout">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

@@ -12,60 +12,34 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'nama',
         'username',
-        'nuptk',
-        'telp',
-        'alamat',
         'password',
+        'nama',
         'level'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
-    public function isAdmin()
+    public function guru()
     {
-        if ($this->level == 'admin') {
-            return true;
-        }
-        return false;
+        return $this->hasOne(Guru::class);
     }
 
-    public function isGuru()
+    public function orangtua()
     {
-        if ($this->level == 'guru') {
-            return true;
-        }
-        return false;
+        return $this->hasOne(Orangtua::class);
     }
 
-    public function siswa()
+    public function siswas()
     {
-        return $this->hasMany(Siswa::class);
+        return $this->hasMany(Siswa::class, 'orangtua_id', 'id');
     }
 
     public function hasil()
@@ -81,5 +55,21 @@ class User extends Authenticatable
     public function soal()
     {
         return $this->hasMany(Soal::class);
+    }
+
+    public function isAdmin()
+    {
+        if ($this->level == 'admin') {
+            return true;
+        }
+        return false;
+    }
+
+    public function isGuru()
+    {
+        if ($this->level == 'guru') {
+            return true;
+        }
+        return false;
     }
 }

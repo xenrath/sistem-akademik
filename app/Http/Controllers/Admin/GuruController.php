@@ -12,14 +12,14 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $gurus = User::where(['level' => 'guru'])->get();
+        $gurus = User::where('level', 'guru')->get();
 
-        return view('admin/dataguru.index', compact('gurus'));
+        return view('admin.guru.index', compact('gurus'));
     }
 
     public function create()
     {
-        return view('admin/dataguru.create');
+        return view('admin.guru.create');
     }
 
     public function store(Request $request)
@@ -27,18 +27,20 @@ class GuruController extends Controller
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nuptk' => 'required',
+            'gender' => 'required',
+            'telp' => 'required|unique:gurus',
             'alamat' => 'required',
-            'username' => 'required|unique:users',
-            'telp' => 'nullable|unique:users',
-            'password' => 'required'
+            'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ], [
-            'nama.required' => 'Masukan nama',
-            'nuptk.required' => 'Masukan nuptk',
-            'alamat.required' => 'Masukan alamat',
-            'username.required' => 'Username harus diisi!',
-            'username.unique' => 'Username sudah digunakan!',
+            'nama.required' => 'Nama Guru harus diisi!',
+            'nuptk.required' => 'NUPTK harus diisi!',
+            'gender.required' => 'Jenis kelamin harus dipilih!',
+            'telp.required' => 'Nomor telepon harus diisi!',
             'telp.unique' => 'Nomor telepon sudah digunakan!',
-            'password.required' => 'Masukan password',
+            'alamat.required' => 'Alamat harus diisi!',
+            'foto.required' => 'Foto harus dipilih!',
+            'foto.image' => 'Foto harus berformat jpeg, jpg, png!',
+            'foto.mimes' => 'Foto harus berformat jpeg, jpg, png!',
         ]);
 
         if ($validator->fails()) {
@@ -46,80 +48,98 @@ class GuruController extends Controller
             return back()->withInput()->with('error', $error);
         }
 
-        User::create(array_merge(
-            $request->all(),
-            [
-                'level' => 'guru'
-            ]
-        ));
+        $foto = str_replace(' ', '', $request->foto->getClientOriginalName());
+        $namafoto = "guru/" . date('YmdHis') . "." . $foto;
+        $request->foto->storeAs('public/uploads', $namafoto);
 
-        return redirect('admin/guru')->with('success', 'Berhasil menambahkan guru');
+        $user = User::create([
+            'username' => $request->nuptk,
+            'password' => bcrypt($request->nuptk),
+            'nama' => $request->nama,
+            'level' => 'guru'
+        ]);
+
+        Guru::create([
+            'user_id' => $user->id,
+            'nuptk' => $request->nuptk,
+            'gender' => $request->gender,
+            'telp' => $request->telp,
+            'alamat' => $request->alamat,
+            'foto' => $namafoto
+        ]);
+
+        return redirect('admin/guru')->with('success', 'Berhasil menambahkan Guru');
     }
 
-    public function show(User $guru)
+    public function show($id)
     {
-        return view('admin/dataguru.show', compact('guru'));
+        $guru = User::where('id', $id)->first();
+
+        return view('admin.guru.show', compact('guru'));
     }
 
     public function edit($id)
     {
         $guru = User::where('id', $id)->first();
-        return view('admin/dataguru.update', compact('guru'));
+
+        return view('admin.guru.update', compact('guru'));
     }
 
     public function update(Request $request, $id)
     {
-        $user = auth()->user();
+        $guru = Guru::where('user_id', $id)->first();
 
-        if ($user->level == 'admin') {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'nama' => 'required',
-                    'nuptk' => 'required',
-                    'alamat' => 'required',
-                    'username' => 'required',
-                    'telp' => 'nullable',
-                ],
-                [
-                    'nama.required' => 'Masukan nama',
-                    'username.required' => 'Masukan username',
-                    'nuptk.required' => 'Masukan nuptk',
-                    'alamat.required' => 'Masukan alamat',
-                    'telp.required' => 'Masukan No telpone',
-                ]
-            );
-        }
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nuptk' => 'required',
+            'gender' => 'required',
+            'telp' => 'required|unique:gurus,telp,' . $guru->id,
+            'alamat' => 'required',
+        ], [
+            'nama.required' => 'Nama Guru harus diisi!',
+            'nuptk.required' => 'NUPTK harus diisi!',
+            'gender.required' => 'Jenis kelamin harus dipilih!',
+            'telp.required' => 'Nomor telepon harus diisi!',
+            'telp.unique' => 'Nomor telepon sudah digunakan!',
+            'alamat.required' => 'Alamat harus diisi!',
+        ]);
+
         if ($validator->fails()) {
             $error = $validator->errors()->all();
             return back()->withInput()->with('error', $error);
         }
 
-        if ($request->password) {
-            $password = bcrypt($request->password);
-        } else {
-            $password = $user->password;
-        }
+        $user = User::where('id', $id)->first();
 
+        if ($request->foto) {
+            $foto = str_replace(' ', '', $request->foto->getClientOriginalName());
+            $namafoto = "guru/" . date('YmdHis') . "." . $foto;
+            $request->foto->storeAs('public/uploads', $namafoto);
+        } else {
+            $namafoto = $user->guru->foto;
+        }
 
         User::where('id', $id)->update([
             'nama' => $request->nama,
-            'nuptk' => $request->nuptk,
-            'alamat' => $request->alamat,
-            'telp' => $request->alamat,
-            'username' => $request->username,
-            'password' => $password
         ]);
 
-        return redirect('admin/guru')->with('success', 'Berhasil memperbarui guru');
+        Guru::where('user_id', $id)->update([
+            'nuptk' => $request->nuptk,
+            'gender' => $request->gender,
+            'telp' => $request->telp,
+            'alamat' => $request->alamat,
+            'foto' => $namafoto
+        ]);
+
+        return redirect('admin/guru')->with('success', 'Berhasil memperbarui Guru');
     }
 
     public function destroy($id)
     {
         $guru = User::find($id);
-        $guru->siswa()->delete();
+        $guru->guru()->delete();
         $guru->delete();
 
-        return redirect('admin/guru')->with('success', 'Berhasil menghapus guru');
+        return redirect('admin/guru')->with('success', 'Berhasil menghapus Guru');
     }
 }

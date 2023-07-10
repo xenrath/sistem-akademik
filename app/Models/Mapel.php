@@ -11,19 +11,8 @@ class Mapel extends Model
 
     protected $fillable = [
         'nama',
-        'kelas_id',
-        'guru_id'
+        'kelas',
     ];
-
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class);
-    }
-
-    public function guru()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function hasil()
     {

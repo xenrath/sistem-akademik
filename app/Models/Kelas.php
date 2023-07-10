@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
+
     protected $fillable = [
+        'nama',
         'kelas',
-        'ruangan'
+        'guru_id'
     ];
+
+    public function guru()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function siswa()
     {

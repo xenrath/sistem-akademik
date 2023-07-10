@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('nuptk')->nullable();
-            $table->string('telp');
-            $table->string('alamat');
             $table->enum('level', ['admin', 'guru', 'orangtua']);
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,35 +14,38 @@ class KelasSeeder extends Seeder
      */
     public function run(): void
     {
+        $gurus = User::where('level', 'guru')->get();
+
         $kelas = [
             [
+                'nama' => '1',
                 'kelas' => '1',
-                'ruangan' => '01',
             ],
             [
+                'nama' => '2',
                 'kelas' => '2',
-                'ruangan' => '02',
             ],
             [
+                'nama' => '3',
                 'kelas' => '3',
-                'ruangan' => '03',
             ],
-
             [
+                'nama' => '4',
                 'kelas' => '4',
-                'ruangan' => '04',
             ],
-
             [
+                'nama' => '5',
                 'kelas' => '5',
-                'ruangan' => '05',
             ],
-
             [
+                'nama' => '6',
                 'kelas' => '6',
-                'ruangan' => '06',
             ],
         ];
+
+        for ($i = 0; $i < count($kelas); $i++) {
+            $kelas[$i]['guru_id'] = $gurus[$i]->id;
+        }
 
         Kelas::insert($kelas);
     }

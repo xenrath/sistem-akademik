@@ -130,7 +130,7 @@
     <!-- End About Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
+    {{-- <section id="features" class="features">
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2 class="text-dark">Program Unggulan</h2>
@@ -188,11 +188,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- End Features Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <section id="portfolio" class="portfolio">
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2 class="text-dark">Galeri</h2>
@@ -333,23 +333,28 @@
               <div class="row">
                 <div class="col-lg-4">
                   <li>
-                    <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                    <i class="bx bx-chevron-right"></i>
+                    <a href="#hero">Home</a>
                   </li>
                   <li>
-                    <i class="bx bx-chevron-right"></i> <a href="#">Tentang Kami</a>
-                  </li>
-                </div>
-                <div class="col-lg-4">
-                  <li>
-                    <i class="bx bx-chevron-right"></i> <a href="#">Galeri</a>
-                  </li>
-                  <li>
-                    <i class="bx bx-chevron-right"></i> <a href="#">PPDB</a>
+                    <i class="bx bx-chevron-right"></i>
+                    <a href="#about">Tentang Kami</a>
                   </li>
                 </div>
                 <div class="col-lg-4">
                   <li>
-                    <i class="bx bx-chevron-right"></i> <a href="#">Kontak</a>
+                    <i class="bx bx-chevron-right"></i> 
+                    <a href="#portfolio">Galeri</a>
+                  </li>
+                  <li>
+                    <i class="bx bx-chevron-right"></i>
+                    <a href="#testimonials">PPDB</a>
+                  </li>
+                </div>
+                <div class="col-lg-4">
+                  <li>
+                    <i class="bx bx-chevron-right"></i> 
+                    <a href="#contact">Kontak</a>
                   </li>
                 </div>
               </div>
