@@ -25,7 +25,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a href="{{ url('guru/nilai') }}" class="nav-link {{ request()->is('guru/nilai') ? 'active' : '' }}">
+  <a href="{{ url('guru/nilai') }}" class="nav-link {{ request()->is('guru/nilai*') ? 'active' : '' }}">
     <i class="nav-icon fas fa-clipboard-list"></i>
     <p>Data Nilai</p>
   </a>

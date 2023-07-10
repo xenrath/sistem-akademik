@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('mapel_id');
+            $table->foreign('mapel_id')->references('id')->on('mapels');
             $table->unsignedBigInteger('kelas_id');
             $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->unsignedBigInteger('siswa_id');

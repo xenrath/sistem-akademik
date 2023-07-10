@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
+use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -13,10 +14,20 @@ class NilaiController extends Controller
     public function index()
     {
         $kelas = Kelas::where('guru_id', auth()->user()->id)->first();
-        $siswas = Siswa::where('kelas_id', $kelas->id)->get();
-        $nilais = Nilai::get();
+        $mapels = Mapel::where('kelas', $kelas->kelas)->get();
 
-        return view('guru.nilai.index', compact('siswas', 'nilais'));
+        return view('guru.nilai.index', compact('mapels'));
+    }
+
+    // id mapel
+    public function show($id)
+    {
+        $kelas = Kelas::where('guru_id', auth()->user()->id)->first();
+        $siswas = Siswa::where('kelas_id', $kelas->id)->get();
+        $nilais = Nilai::where('mapel_id', $id)->get();
+        $mapel = Mapel::where('id', $id)->first();
+
+        return view('guru.nilai.show', compact('siswas', 'nilais', 'mapel'));
     }
 
     public function absensi(Request $request, $id)
@@ -33,13 +44,14 @@ class NilaiController extends Controller
             ]);
         } else {
             Nilai::create([
+                'mapel_id' => $request->mapel_id,
                 'kelas_id' => $siswa->kelas_id,
                 'siswa_id' => $id,
                 'absensi' => $request->absensi
             ]);
         }
 
-        return back()->with('success', 'Berhasil memperbarui Nilai Absensi ' . $siswa->nama);
+        return back()->with('success', 'Berhasil memperbarui nilai absensi ' . $siswa->nama);
     }
 
     public function tugas(Request $request, $id)
@@ -56,13 +68,14 @@ class NilaiController extends Controller
             ]);
         } else {
             Nilai::create([
+                'mapel_id' => $request->mapel_id,
                 'kelas_id' => $siswa->kelas_id,
                 'siswa_id' => $id,
                 'tugas' => $request->tugas
             ]);
         }
 
-        return back()->with('success', 'Berhasil memperbarui Nilai Tugas ' . $siswa->nama);
+        return back()->with('success', 'Berhasil memperbarui nilai tugas ' . $siswa->nama);
     }
 
     public function uts(Request $request, $id)
@@ -79,13 +92,14 @@ class NilaiController extends Controller
             ]);
         } else {
             Nilai::create([
+                'mapel_id' => $request->mapel_id,
                 'kelas_id' => $siswa->kelas_id,
                 'siswa_id' => $id,
                 'uts' => $request->uts
             ]);
         }
 
-        return back()->with('success', 'Berhasil memperbarui Nilai UTS ' . $siswa->nama);
+        return back()->with('success', 'Berhasil memperbarui nilai UTS ' . $siswa->nama);
     }
 
     public function uas(Request $request, $id)
@@ -102,12 +116,13 @@ class NilaiController extends Controller
             ]);
         } else {
             Nilai::create([
+                'mapel_id' => $request->mapel_id,
                 'kelas_id' => $siswa->kelas_id,
                 'siswa_id' => $id,
                 'uas' => $request->uas
             ]);
         }
 
-        return back()->with('success', 'Berhasil memperbarui Nilai UAS  ' . $siswa->nama);
+        return back()->with('success', 'Berhasil memperbarui nilai UAS  ' . $siswa->nama);
     }
 }

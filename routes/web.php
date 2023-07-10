@@ -70,11 +70,11 @@ Route::middleware('guru')->prefix('guru')->group(function () {
 
     Route::get('jadwal', [\App\Http\Controllers\Guru\JadwalController::class, 'index']);
 
-    Route::get('nilai', [\App\Http\Controllers\Guru\NilaiController::class, 'index']);
     Route::post('nilai/absensi/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'absensi']);
     Route::post('nilai/tugas/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'tugas']);
     Route::post('nilai/uts/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'uts']);
     Route::post('nilai/uas/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'uas']);
+    Route::resource('nilai', \App\Http\Controllers\Guru\NilaiController::class)->only('index', 'show');
 
     Route::resource('kelas', \App\Http\Controllers\Guru\KelasController::class);
 
