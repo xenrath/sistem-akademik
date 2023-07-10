@@ -72,4 +72,12 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function isOrangtua()
+    {
+        if ($this->level == 'orangtua') {
+            return true;
+        }
+        return false;
+    }
 }

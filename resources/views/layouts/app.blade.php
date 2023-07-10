@@ -92,9 +92,10 @@
             data-accordion="false">
             @if (auth()->user()->isAdmin())
               @include('layouts.menu.admin')
-            @endif
-            @if (auth()->user()->isGuru())
+            @elseif(auth()->user()->isGuru())
               @include('layouts.menu.guru')
+            @elseif(auth()->user()->isOrangtua())
+              @include('layouts.menu.orangtua')
             @endif
             <li class="nav-header">Profile</li>
             <li class="nav-item">

@@ -80,3 +80,11 @@ Route::middleware('guru')->prefix('guru')->group(function () {
 
     Route::resource('mapel', \App\Http\Controllers\Guru\MapelController::class);
 });
+
+Route::middleware('orangtua')->prefix('orangtua')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Orangtua\DashboardController::class, 'index']);
+
+    Route::get('jadwal', [\App\Http\Controllers\Orangtua\JadwalController::class, 'index']);
+    
+    Route::get('nilai', [\App\Http\Controllers\Orangtua\NilaiController::class, 'index']);
+});

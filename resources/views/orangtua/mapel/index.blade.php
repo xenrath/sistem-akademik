@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Nilai')
+@section('title', 'Data Mapel')
 
 @section('content')
   <!-- Content Header (Page header) -->
@@ -8,11 +8,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Data Nilai</h1>
+          <h1 class="m-0">Data Mapel</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Data Nilai</li>
+            <li class="breadcrumb-item active">Data Mapel</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Data Nilai</h3>
+          <h3 class="card-title">Data Mapel</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -34,7 +34,6 @@
               <tr>
                 <th class="text-center" style="width: 20px">No</th>
                 <th>Nama</th>
-                <th style="width: 20px">Opsi</th>
               </tr>
             </thead>
             <tbody>
@@ -42,9 +41,6 @@
                 <tr>
                   <td class="text-center">{{ $loop->iteration }}</td>
                   <td>{{ $mapel->nama }}</td>
-                  <td>
-                    <a href="{{ url('guru/nilai/' . $mapel->id) }}" class="btn btn-primary">Pilih</a>
-                  </td>
                 </tr>
               @endforeach
             </tbody>

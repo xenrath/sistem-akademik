@@ -34,6 +34,7 @@ class NilaiController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $nilai = Nilai::where([
+            ['mapel_id', $request->mapel_id],
             ['kelas_id', $siswa->kelas_id],
             ['siswa_id', $id],
         ])->first();
@@ -58,6 +59,7 @@ class NilaiController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $nilai = Nilai::where([
+            ['mapel_id', $request->mapel_id],
             ['kelas_id', $siswa->kelas_id],
             ['siswa_id', $id],
         ])->first();
@@ -82,6 +84,7 @@ class NilaiController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $nilai = Nilai::where([
+            ['mapel_id', $request->mapel_id],
             ['kelas_id', $siswa->kelas_id],
             ['siswa_id', $id],
         ])->first();
@@ -106,6 +109,7 @@ class NilaiController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $nilai = Nilai::where([
+            ['mapel_id', $request->mapel_id],
             ['kelas_id', $siswa->kelas_id],
             ['siswa_id', $id],
         ])->first();

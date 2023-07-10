@@ -20,6 +20,8 @@ class HomeController extends Controller
             return redirect('admin');
         } elseif (auth()->user()->isGuru()) {
             return redirect('guru');
+        } elseif (auth()->user()->isOrangtua()) {
+            return redirect('orangtua');
         }
     }
 }

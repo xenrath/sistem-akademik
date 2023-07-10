@@ -33,18 +33,36 @@
             <thead>
               <tr>
                 <th class="text-center" style="width: 20px">No</th>
-                <th>Nama</th>
-                <th style="width: 20px">Opsi</th>
+                <th>Nama Mapel</th>
+                <th>Nilai Absensi</th>
+                <th>Nilai Tugas</th>
+                <th>Nilai UTS</th>
+                <th>Nilai UAS</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($mapels as $mapel)
+                @php
+                  $nilai = \App\Models\Nilai::where([['mapel_id', $mapel->id], ['kelas_id', $siswa->kelas_id], ['siswa_id', $siswa->id]])->first();
+                  if ($nilai) {
+                      $absensi = $nilai->absensi != null ? $nilai->absensi : '-';
+                      $tugas = $nilai->tugas != null ? $nilai->tugas : '-';
+                      $uts = $nilai->uts != null ? $nilai->uts : '-';
+                      $uas = $nilai->uas != null ? $nilai->uas : '-';
+                  } else {
+                      $absensi = '-';
+                      $tugas = '-';
+                      $uts = '-';
+                      $uas = '-';
+                  }
+                @endphp
                 <tr>
                   <td class="text-center">{{ $loop->iteration }}</td>
                   <td>{{ $mapel->nama }}</td>
-                  <td>
-                    <a href="{{ url('guru/nilai/' . $mapel->id) }}" class="btn btn-primary">Pilih</a>
-                  </td>
+                  <td>{{ $absensi }}</td>
+                  <td>{{ $tugas }}</td>
+                  <td>{{ $uts }}</td>
+                  <td>{{ $uas }}</td>
                 </tr>
               @endforeach
             </tbody>
