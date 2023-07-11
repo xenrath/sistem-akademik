@@ -51,6 +51,11 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="form-group">
+              <label for="home_nama">Nama Sekolah</label>
+              <input type="text" class="form-control" id="home_nama" name="home_nama"
+                value="{{ old('home_nama', $profilesekolah->home_nama) }}">
+            </div>
+            <div class="form-group">
               <label for="home_judul">Judul</label>
               <input type="text" class="form-control" id="home_judul" name="home_judul"
                 value="{{ old('home_judul', $profilesekolah->home_judul) }}">

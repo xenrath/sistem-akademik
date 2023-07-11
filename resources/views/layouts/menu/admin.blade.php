@@ -7,9 +7,9 @@
 </li>
 <li class="nav-header">Menu</li>
 <li
-  class="nav-item {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') ? 'menu-open' : '' }}">
+  class="nav-item {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') || request()->is('admin/jadwal*') ? 'menu-open' : '' }}">
   <a href="#"
-    class="nav-link {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') ? 'active' : '' }}">
+    class="nav-link {{ request()->is('admin/guru*') || request()->is('admin/kelas*') || request()->is('admin/siswa*') || request()->is('admin/orangtua*') || request()->is('admin/mapel*') || request()->is('admin/jadwal*') ? 'active' : '' }}">
     <i class="nav-icon fas fa-grip-horizontal"></i>
     <p>
       Kelola Data
@@ -47,6 +47,12 @@
         <p>Data Mapel</p>
       </a>
     </li>
+    {{-- <li class="nav-item">
+      <a href="{{ url('admin/jadwal') }}" class="nav-link {{ request()->is('admin/jadwal*') ? 'active' : '' }}">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Data Jadwal</p>
+      </a>
+    </li> --}}
   </ul>
 </li>
 <li

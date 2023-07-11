@@ -14,6 +14,7 @@ class ProfileSekolahSeeder extends Seeder
     public function run(): void
     {
         $profilesekolah = [
+            'home_nama' => 'Sekolah Dasar ABC',
             'home_judul' => 'Selamat Datang di Sekolah Dasar ABC',
             'home_deskripsi' => 'Pendidikan Berkualitas untuk Masa Depan Anak Anda',
             'home_gambar' => 'menu-home/logo.png',

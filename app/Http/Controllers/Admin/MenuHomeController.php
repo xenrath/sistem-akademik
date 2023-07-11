@@ -20,13 +20,13 @@ class MenuHomeController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'home_nama' => 'required',
             'home_judul' => 'required',
             'home_deskripsi' => 'required',
-            'home_gambar' => 'required',
         ], [
-            'home_judul' => 'Deskripsi harus diisi!',
-            'home_deskripsi' => 'Visi harus diisi!',
-            'home_gambar' => 'Misi harus diisi!',
+            'home_nama' => 'Nama sekolah harus diisi!',
+            'home_judul' => 'Judul harus diisi!',
+            'home_deskripsi' => 'Deskripsi harus diisi!',
         ]);
 
         if ($validator->fails()) {
@@ -42,6 +42,7 @@ class MenuHomeController extends Controller
         }
 
         ProfileSekolah::where('id', 1)->update([
+            'home_nama' => $request->home_nama,
             'home_judul' => $request->home_judul,
             'home_deskripsi' => $request->home_deskripsi,
             'home_gambar' => $home_gambar,

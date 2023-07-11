@@ -10,6 +10,7 @@ class ProfileSekolah extends Model
     use HasFactory;
 
     protected $fillable = [
+        'home_nama',
         'home_judul',
         'home_deskripsi',
         'home_gambar',

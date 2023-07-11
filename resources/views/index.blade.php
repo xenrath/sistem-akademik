@@ -38,7 +38,7 @@
     <div class="container d-flex align-items-center">
       <div class="logo me-auto">
         <h1>
-          <a href="index.html">Sekolah Dasar ABC</a>
+          <a href="">{{ $profilesekolah->home_nama }}</a>
         </h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html">

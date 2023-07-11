@@ -40,6 +40,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::resource('mapel', \App\Http\Controllers\Admin\MapelController::class);
 
+    Route::resource('jadwal', \App\Http\Controllers\Admin\JadwalController::class);
+
     Route::get('menu-home', [\App\Http\Controllers\Admin\MenuHomeController::class, 'index']);
     Route::post('menu-home/update', [\App\Http\Controllers\Admin\MenuHomeController::class, 'update']);
 

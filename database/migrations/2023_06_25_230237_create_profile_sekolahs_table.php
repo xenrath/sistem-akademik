@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('profile_sekolahs', function (Blueprint $table) {
             $table->id();
+            $table->string('home_nama')->nullable();
             $table->string('home_judul')->nullable();
             $table->text('home_deskripsi')->nullable();
             $table->string('home_gambar')->nullable();
