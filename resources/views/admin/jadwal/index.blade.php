@@ -35,11 +35,6 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Data Jadwal</h3>
-          <div class="float-right">
-            <a href="{{ url('admin/kelas/create') }}" class="btn btn-primary btn-sm">
-              <i class="fas fa-plus"></i> Tambah
-            </a>
-          </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -58,7 +53,7 @@
                   <td>{{ $kelas->nama }}</td>
                   </td>
                   <td class="text-center">
-                    <a href="{{ url('admin/kelas/' . $kelas->id . '/edit') }}" class="btn btn-primary">
+                    <a href="{{ url('admin/jadwal/' . $kelas->id) }}" class="btn btn-primary">
                       Pilih
                     </a>
                   </td>

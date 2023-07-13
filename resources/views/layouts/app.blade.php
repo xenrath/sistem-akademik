@@ -117,7 +117,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper {{ request()->is('guru/jadwal') ? 'kanban' : '' }}">
+    <div class="content-wrapper {{ request()->is('admin/jadwal/*') || request()->is('guru/jadwal') || request()->is('orangtua/jadwal') ? 'kanban' : '' }}">
 
       @yield('content')
 

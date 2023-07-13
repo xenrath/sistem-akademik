@@ -19,108 +19,34 @@
   </section>
   <section class="content pb-3">
     <div class="container-fluid h-100">
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
+      @php
+        $haris = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+      @endphp
+      @foreach ($haris as $hari)
+        <div class="card card-row card-primary">
+          <div class="card-header">
+            <h3 class="card-title">
+              {{ ucfirst($hari) }}
+            </h3>
+          </div>
+          <div class="card-body">
+            @php
+              $jadwals = \App\Models\Jadwal::where([['kelas_id', $kelas->id], ['hari', $hari]])->get();
+            @endphp
+            @foreach ($jadwals as $jadwal)
+              <div class="card card-info card-outline mb-2">
+                <div class="card-header">
+                  <h5 class="card-title">{{ $jadwal->mapel->nama }}</h5>
+                  <br>
+                  <div class="card-tools">
+                    <span class="mr-2">{{ $jadwal->jam_awal }} - {{ $jadwal->jam_akhir }}</span>
+                  </div>
+                </div>
               </div>
-            </div>
+            @endforeach
           </div>
         </div>
-      </div>
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-row card-primary">
-        <div class="card-header">
-          <h3 class="card-title">
-            Senin
-          </h3>
-        </div>
-        <div class="card-body">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Upacara</h5>
-              <div class="card-tools">
-                <span class="mr-2">07.00 - 08.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </section>
 @endsection

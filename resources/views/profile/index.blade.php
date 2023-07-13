@@ -93,20 +93,60 @@
               @if ($user->guru->foto)
                 <div class="row">
                   <div class="col-lg-3">
-                    <img src="{{ asset('storage/uploads/' . $user->guru->foto) }}" alt="{{ $user->nama }}" class="w-100">
+                    <img src="{{ asset('storage/uploads/' . $user->guru->foto) }}" alt="{{ $user->nama }}"
+                      class="w-100">
                   </div>
                 </div>
               @endif
             @endif
+            @if ($user->level == 'orangtua')
+              <div class="form-group">
+                <label for="nik">NIK</label>
+                <input type="text" class="form-control" id="nik" name="nik" placeholder="masukan nik"
+                  value="{{ old('nik', $user->orangtua->nik) }}">
+              </div>
+              <div class="form-group">
+                <label for="gender">Jenis Kelamin</label>
+                <select class="custom-select form-control" name="gender" id="gender">
+                  <option value="">- Pilih -</option>
+                  <option value="L" {{ old('gender', $user->orangtua->gender) == 'L' ? 'selected' : '' }}>L
+                  </option>
+                  <option value="P" {{ old('gender', $user->orangtua->gender) == 'P' ? 'selected' : '' }}>P
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="telp">No. Telepon</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+62</span>
+                  </div>
+                  <input type="text" id="telp" name="telp" class="form-control"
+                    placeholder="masukan nomor telepon" value="{{ old('telp', $user->orangtua->telp) }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="masukan alamat">{{ old('alamat', $user->orangtua->alamat) }}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="foto">Foto</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="foto" name="foto" accept="image/*">
+                  <label class="custom-file-label" for="foto">Pilih Foto</label>
+                </div>
+              </div>
+            @endif
             <hr>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="masukan username"
-                value="{{ old('username', $user->username) }}">
+              <input type="text" class="form-control" id="username" name="username"
+                placeholder="masukan username" value="{{ old('username', $user->username) }}">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}">
+              <input type="password" id="password" name="password" class="form-control"
+                value="{{ old('password') }}">
               <small>(Kosongkan saja jika tidak ingin diubah)</small>
             </div>
           </div>

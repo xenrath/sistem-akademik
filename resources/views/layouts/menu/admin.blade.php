@@ -47,12 +47,12 @@
         <p>Data Mapel</p>
       </a>
     </li>
-    {{-- <li class="nav-item">
+    <li class="nav-item">
       <a href="{{ url('admin/jadwal') }}" class="nav-link {{ request()->is('admin/jadwal*') ? 'active' : '' }}">
         <i class="far fa-circle nav-icon"></i>
         <p>Data Jadwal</p>
       </a>
-    </li> --}}
+    </li>
   </ul>
 </li>
 <li

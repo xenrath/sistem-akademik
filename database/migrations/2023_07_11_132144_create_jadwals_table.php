@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('kelas_id');
+            $table->foreign('kelas_id')->references('id')->on('kelas');
+            $table->unsignedBigInteger('mapel_id');
+            $table->foreign('mapel_id')->references('id')->on('mapels');
+            $table->enum('hari', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']);
+            $table->string('jam_awal');
+            $table->string('jam_akhir');
             $table->timestamps();
         });
     }

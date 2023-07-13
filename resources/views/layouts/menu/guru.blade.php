@@ -18,12 +18,12 @@
     <p>Lihat Siswa</p>
   </a>
 </li>
-{{-- <li class="nav-item">
+<li class="nav-item">
   <a href="{{ url('guru/jadwal') }}" class="nav-link {{ request()->is('guru/jadwal') ? 'active' : '' }}">
     <i class="nav-icon fas fa-clipboard-list"></i>
     <p>Lihat Jadwal</p>
   </a>
-</li> --}}
+</li>
 <li class="nav-item">
   <a href="{{ url('guru/nilai') }}" class="nav-link {{ request()->is('guru/nilai*') ? 'active' : '' }}">
     <i class="nav-icon fas fa-clipboard-list"></i>

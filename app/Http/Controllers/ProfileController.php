@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Orangtua;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +26,7 @@ class ProfileController extends Controller
         } elseif ($user->level == 'guru') {
             $validator = $this->guru($request, $user->id);
         } elseif ($user->level == 'orangtua') {
-            $validator = $this->orangtua($request);
+            $validator = $this->orangtua($request, $user->id);
         }
 
         if ($validator->fails()) {
@@ -53,13 +54,22 @@ class ProfileController extends Controller
             } else {
                 $namafoto = $user->guru->foto;
             }
-            
+
             Guru::where('user_id', $user->id)->update([
                 'nuptk' => $request->nuptk,
                 'gender' => $request->gender,
                 'telp' => $request->telp,
                 'alamat' => $request->alamat,
                 'foto' => $namafoto
+            ]);
+        }
+
+        if ($user->level == 'orangtua') {
+            Orangtua::where('user_id', $user->id)->update([
+                'nik' => $request->nik,
+                'gender' => $request->gender,
+                'telp' => $request->telp,
+                'alamat' => $request->alamat,
             ]);
         }
 
@@ -95,6 +105,32 @@ class ProfileController extends Controller
             'nama.required' => 'Nama Guru harus diisi!',
             'nuptk.required' => 'NUPTK harus diisi!',
             'nuptk.unique' => 'NUPTK sudah digunakan!',
+            'gender.required' => 'Jenis kelamin harus diisi!',
+            'telp.required' => 'Nomor telepon harus diisi!',
+            'telp.unique' => 'Nomor telepon sudah digunakan!',
+            'alamat.required' => 'Alamat harus diisi!',
+            'username.required' => 'Username harus diisi!',
+            'username.unique' => 'Username sudah digunakan!',
+        ]);
+
+        return $validator;
+    }
+
+    public function orangtua($request, $id)
+    {
+        $orangtua = Orangtua::where('user_id', $id)->first();
+
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nik' => 'required|unique:orangtuas,nik,' . $orangtua->id,
+            'gender' => 'required',
+            'telp' => 'required|unique:orangtuas,telp,' . $orangtua->id,
+            'alamat' => 'required',
+            'username' => 'required|unique:users,username,' . $id,
+        ], [
+            'nama.required' => 'Nama Guru harus diisi!',
+            'nik.required' => 'NIK harus diisi!',
+            'nik.unique' => 'NIK sudah digunakan!',
             'gender.required' => 'Jenis kelamin harus diisi!',
             'telp.required' => 'Nomor telepon harus diisi!',
             'telp.unique' => 'Nomor telepon sudah digunakan!',
