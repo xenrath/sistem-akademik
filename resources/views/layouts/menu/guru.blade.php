@@ -25,6 +25,12 @@
   </a>
 </li>
 <li class="nav-item">
+  <a href="{{ url('guru/absensi') }}" class="nav-link {{ request()->is('guru/absensi') ? 'active' : '' }}">
+    <i class="nav-icon fas fa-clipboard-list"></i>
+    <p>Data Absensi</p>
+  </a>
+</li>
+<li class="nav-item">
   <a href="{{ url('guru/nilai') }}" class="nav-link {{ request()->is('guru/nilai*') ? 'active' : '' }}">
     <i class="nav-icon fas fa-clipboard-list"></i>
     <p>Data Nilai</p>

@@ -36,6 +36,10 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -117,7 +121,8 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper {{ request()->is('admin/jadwal/*') || request()->is('guru/jadwal') || request()->is('orangtua/jadwal') ? 'kanban' : '' }}">
+    <div
+      class="content-wrapper {{ request()->is('admin/jadwal/*') || request()->is('guru/jadwal') || request()->is('orangtua/jadwal') ? 'kanban' : '' }}">
 
       @yield('content')
 

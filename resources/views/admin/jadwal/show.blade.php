@@ -41,13 +41,110 @@
                 <div class="card-header">
                   <h5 class="card-title">{{ $jadwal->mapel->nama }}</h5>
                   <br>
-                  <div class="card-tools">
-                    <span class="mr-2">{{ $jadwal->jam_awal }} - {{ $jadwal->jam_akhir }}</span>
+                  <span>{{ $jadwal->jam_awal }} - {{ $jadwal->jam_akhir }}</span>
+                  <div class="card-tools m-0">
+                    <button type="button" class="btn btn-warning btn-xs" data-toggle="modal"
+                      data-target="#modal-edit-{{ $jadwal->id }}">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                      data-target="#modal-hapus-{{ $jadwal->id }}">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="modal-edit-{{ $jadwal->id }}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Perbarui Mapel</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ url('admin/jadwal/' . $jadwal->id) }}" method="POST">
+                      @csrf
+                      @method('put')
+                      <div class="modal-body">
+                        <input type="hidden" class="form-control" name="kelas_id" value="{{ $kelas->id }}" required>
+                        <div class="form-group">
+                          <label for="mapel_id">Mapel</label>
+                          <select class="form-control select2bs4" name="mapel_id" id="mapel_id-{{ $jadwal->id }}"
+                            required>
+                            <option value="">- Pilih -</option>
+                            @foreach ($mapels as $mapel)
+                              <option value="{{ $mapel->id }}"
+                                {{ old('mapel_id', $jadwal->mapel_id) == $mapel->id ? 'selected' : '' }}>
+                                {{ $mapel->nama }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <input type="hidden" class="form-control" id="hari" name="hari" value="{{ $hari }}" required>
+                        <div class="form-group">
+                          <label for="jam_awal">Jam Awal</label>
+                          <input type="time" class="form-control" id="jam_awal" name="jam_awal"
+                            value="{{ $jadwal->jam_awal }}" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="jam_akhir">Jam Akhir</label>
+                          <input type="time" class="form-control" id="jam_akhir" name="jam_akhir"
+                            value="{{ $jadwal->jam_akhir }}" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Perbarui</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <script>
+                $(function() {
+                  $('mapel_id-'.
+                    "{{ $jadwal->id }}").select2({
+                    theme: 'bootstrap4'
+                  });
+                });
+              </script>
+              <div class="modal fade" id="modal-hapus-{{ $jadwal->id }}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Perbarui Mapel</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ url('admin/jadwal/' . $jadwal->id) }}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <div class="modal-body">
+                        <p>
+                          <strong>Hari</strong>
+                          <br>
+                          {{ ucfirst($jadwal->hari) }}
+                        </p>
+                        <p>
+                          <strong>Mapel</strong>
+                          <br>
+                          {{ $jadwal->mapel->nama }}
+                        </p>
+                        <hr>
+                        <p>Yakin hapus mapel dari jadwal?</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             @endforeach
-            <button type="button" class="btn btn-outline-primary btn-block {{ count($jadwals) > 0 ? 'mt-4' : '' }}" onclick="modal_jadwal('{{ $hari }}')">
+            <button type="button" class="btn btn-outline-primary btn-block {{ count($jadwals) > 0 ? 'mt-4' : '' }}"
+              onclick="modal_jadwal('{{ $hari }}')">
               <i class="fas fa-plus"></i>
             </button>
           </div>

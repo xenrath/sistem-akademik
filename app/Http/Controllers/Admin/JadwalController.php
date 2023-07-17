@@ -40,4 +40,25 @@ class JadwalController extends Controller
 
         return back();
     }
+
+    public function update(Request $request, $id)
+    {
+        Jadwal::where('id', $id)->update([
+            'kelas_id' => $request->kelas_id,
+            'mapel_id' => $request->mapel_id,
+            'hari' => $request->hari,
+            'jam_awal' => $request->jam_awal,
+            'jam_akhir' => $request->jam_akhir
+        ]);
+
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        $jadwal = Jadwal::where('id', $id)->first();
+        $jadwal->delete();
+
+        return back();
+    }
 }
