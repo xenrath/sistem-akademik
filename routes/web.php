@@ -77,11 +77,10 @@ Route::middleware('guru')->prefix('guru')->group(function () {
     Route::post('nilai/uts/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'uts']);
     Route::post('nilai/uas/{id}', [\App\Http\Controllers\Guru\NilaiController::class, 'uas']);
     Route::resource('nilai', \App\Http\Controllers\Guru\NilaiController::class)->only('index', 'show');
-
-    Route::resource('absensi', \App\Http\Controllers\Guru\AbsensiController::class);
+    
     Route::get('absensi-list', [\App\Http\Controllers\Guru\AbsensiController::class, 'list']);
     Route::get('absensi-list/{id}', [\App\Http\Controllers\Guru\AbsensiController::class, 'list_show']);
-    Route::post('absensi-list/{id}', [\App\Http\Controllers\Guru\AbsensiController::class, 'list_update']);
+    Route::resource('absensi', \App\Http\Controllers\Guru\AbsensiController::class);
 });
 
 Route::middleware('orangtua')->prefix('orangtua')->group(function () {
